@@ -13,7 +13,7 @@ local Maim = serv:Channel("ทำของ")
 local MaiA = serv:Channel("ตั้งค่าv2")
 
 tgls:Toggle("AutoFarm",false, function(value)
-_G.BringMob = value
+_G.BringMonster2 = value
 _G.FastAttackNormalSpeed = value
 _G.AutoFarm = value
 if game.PlaceId == 2753915549 then
@@ -1238,109 +1238,6 @@ spawn(function()
         end
     end
 end)
-spawn(function()
-    pcall(function()
-       game:GetService("RunService").Heartbeat:Connect(function()
-        if _G.farmlevel then
-          if not game:GetService("Workspace"):FindFirstChild("LOL") then
-             local Paertaiteen = Instance.new("Part")
-             Paertaiteen.Name = "LOL"
-             Paertaiteen.Parent = game.Workspace
-             Paertaiteen.Anchored = true
-             Paertaiteen.Transparency = 0
-             Paertaiteen.Size = Vector3.new(5,0.5,10)
-             Paertaiteen.Material = "Neon"
-             while true do 
-                 wait(0.1) 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 0, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 155, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 255, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(0, 255, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(0, 255, 255)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(0, 155, 255)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 0, 255)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 0, 155)}):Play() 
-                 wait(.5)
-             end 
-         elseif game:GetService("Workspace"):FindFirstChild("LOL") then
-             game.Workspace["LOL"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.92,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
-         end
-     else
-         if game:GetService("Workspace"):FindFirstChild("LOL") then
-             game:GetService("Workspace"):FindFirstChild("LOL"):Destroy()
-         end
-        end
-    end)
- end)
-end)
-
---ท่า part มันทำให้ fast attack ตีข้าลง กรอ ตีไม่เข้า ให้ ลบ ตรง บรรทัด ที่ 1223 ถึง บรรทัดที่1287 แต่ auto farm อันนี้ part ใต้ตีนมันไม่มี ท่าคุณเอามันออก คุณจะตกลงน้ำ
-
---bring mob
-spawn(function()
-        while task.wait() do
-            pcall(function()
-                if _G.BringMonster then
-                    CheckQuest()
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if _G.AutoFarm and StartMagnet and v.Name == Mon and (Mon == "Factory Staff [Lv. 800]" or Mon == "Monkey [Lv. 14]" or Mon == "Dragon Crew Warrior [Lv. 1575]" or Mon == "Dragon Crew Archer [Lv. 1600]") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 220 then
-                            v.HumanoidRootPart.Size = Vector3.new(70,70,70)
-                            v.HumanoidRootPart.CFrame = PosMon
-                            v.Humanoid:ChangeState(14)
-                            v.HumanoidRootPart.CanCollide = false
-                            v.Head.CanCollide = false
-                            if v.Humanoid:FindFirstChild("Animator") then
-                                v.Humanoid.Animator:Destroy()
-                            end
-                            sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-                        elseif _G.AutoFarm and StartMagnet and v.Name == Mon and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 275 then
-                            v.HumanoidRootPart.Size = Vector3.new(70,70,70)
-                            v.HumanoidRootPart.CFrame = PosMon
-                            v.Humanoid:ChangeState(14)
-                            v.HumanoidRootPart.CanCollide = false
-                            v.Head.CanCollide = false
-                            if v.Humanoid:FindFirstChild("Animator") then
-                                v.Humanoid.Animator:Destroy()
-                            end
-                            sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-                        end
-                    end
-                end
-            end)
-        end
-    end)
-end)
-
 
 
 
@@ -2808,4 +2705,38 @@ task.spawn(function()
             end
         end
     end)
+end)
+
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+
+spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.BringMonster2 then
+				for L_84_forvar0, L_85_forvar1 in pairs(game.Workspace.Enemies:GetChildren()) do
+					if not string.find(L_85_forvar1.Name, "Boss") and (L_85_forvar1.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
+						if InMyNetWork(L_85_forvar1.HumanoidRootPart) then
+							L_85_forvar1.HumanoidRootPart.CFrame = PosMon
+							L_85_forvar1.Humanoid.JumpPower = 0
+							L_85_forvar1.Humanoid.WalkSpeed = 0
+							L_85_forvar1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+							L_85_forvar1.HumanoidRootPart.Transparency = 1
+							L_85_forvar1.HumanoidRootPart.CanCollide = false
+							L_85_forvar1.Head.CanCollide = false
+							if L_85_forvar1.Humanoid:FindFirstChild("Animator") then
+								L_85_forvar1.Humanoid.Animator:Destroy()
+							end
+							L_85_forvar1.Humanoid:ChangeState(11)
+							L_85_forvar1.Humanoid:ChangeState(14)
+						end
+					end
+				end
+			end
+		end)
+	end
 end)
