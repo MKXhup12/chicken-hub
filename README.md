@@ -13,9 +13,12 @@ local Maim = serv:Channel("ทำของ")
 local MaiA = serv:Channel("ตั้งค่าv2")
 
 tgls:Toggle("AutoFarm",false, function(value)
-_G.BringMonster2 = value
+_G.BringMob = value
 _G.FastAttackNormalSpeed = value
 _G.AutoFarm = value
+end)
+
+
 if game.PlaceId == 2753915549 then
         W = true
     elseif game.PlaceId == 4442272183 then
@@ -1238,8 +1241,71 @@ spawn(function()
         end
     end
 end)
-
-
+spawn(function()
+    pcall(function()
+       game:GetService("RunService").Heartbeat:Connect(function()
+        if _G.farmlevel then
+          if not game:GetService("Workspace"):FindFirstChild("LOL") then
+             local Paertaiteen = Instance.new("Part")
+             Paertaiteen.Name = "LOL"
+             Paertaiteen.Parent = game.Workspace
+             Paertaiteen.Anchored = true
+             Paertaiteen.Transparency = 0
+             Paertaiteen.Size = Vector3.new(5,0.5,10)
+             Paertaiteen.Material = "Neon"
+             while true do 
+                 wait(0.1) 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(255, 0, 0)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(255, 155, 0)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(255, 255, 0)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(0, 255, 0)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(0, 255, 255)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(0, 155, 255)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(255, 0, 255)}):Play() 
+                 wait(.5)
+ 
+                 game:GetService('TweenService'):Create(
+                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+                 {Color = Color3.fromRGB(255, 0, 155)}):Play() 
+                 wait(.5)
+             end 
+         elseif game:GetService("Workspace"):FindFirstChild("LOL") then
+             game.Workspace["LOL"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.92,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+         end
+     else
+         if game:GetService("Workspace"):FindFirstChild("LOL") then
+             game:GetService("Workspace"):FindFirstChild("LOL"):Destroy()
+         end
+        end
+    end)
+ end)
+end)
 
 
 
@@ -2478,33 +2544,8 @@ Main:Toggle("Auto Devil Fruits",_G.Auto_DevilFruit,function(value)
 end)
 
 
-                              task.spawn(function()
-									while task.wait() do
-										pcall(function()
-											if BringMobFarm then
-												for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-													if not string.find(v.Name,"Boss") and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-														if InMyNetWork(v.HumanoidRootPart) then
-															v.HumanoidRootPart.CFrame = PosMon
-															v.Humanoid.JumpPower = 0
-															v.Humanoid.WalkSpeed = 0
-															v.HumanoidRootPart.Size = Vector3.new(90,90,90)
-															v.HumanoidRootPart.Transparency = 1
-															v.HumanoidRootPart.CanCollide = false
-															v.Head.CanCollide = false
-															if v.Humanoid:FindFirstChild("Animator") then
-																v.Humanoid.Animator:Destroy()
-															end
-															v.Humanoid:ChangeState(11)
-															v.Humanoid:ChangeState(14)
-														end
-													end
-												end
-											end
-										end)
-									end
-								end)
-
+                              
+                              
 spawn(function()
     while wait() do
         if _G.BringMob then
@@ -2707,36 +2748,5 @@ task.spawn(function()
     end)
 end)
 
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-	wait(1)
-	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
 
 
-spawn(function()
-	while wait() do
-		pcall(function()
-			if _G.BringMonster2 then
-				for L_84_forvar0, L_85_forvar1 in pairs(game.Workspace.Enemies:GetChildren()) do
-					if not string.find(L_85_forvar1.Name, "Boss") and (L_85_forvar1.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
-						if InMyNetWork(L_85_forvar1.HumanoidRootPart) then
-							L_85_forvar1.HumanoidRootPart.CFrame = PosMon
-							L_85_forvar1.Humanoid.JumpPower = 0
-							L_85_forvar1.Humanoid.WalkSpeed = 0
-							L_85_forvar1.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-							L_85_forvar1.HumanoidRootPart.Transparency = 1
-							L_85_forvar1.HumanoidRootPart.CanCollide = false
-							L_85_forvar1.Head.CanCollide = false
-							if L_85_forvar1.Humanoid:FindFirstChild("Animator") then
-								L_85_forvar1.Humanoid.Animator:Destroy()
-							end
-							L_85_forvar1.Humanoid:ChangeState(11)
-							L_85_forvar1.Humanoid:ChangeState(14)
-						end
-					end
-				end
-			end
-		end)
-	end
-end)
