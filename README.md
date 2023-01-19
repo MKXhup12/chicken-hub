@@ -18,6 +18,7 @@ _G.FastAttackNormalSpeed = value
 _G.AutoFarm = value
 end)
 
+_G.Teams="Pirates"
 
 if game.PlaceId == 2753915549 then
         W = true
@@ -2749,4 +2750,39 @@ task.spawn(function()
 end)
 
 
+tgls = serv:Channel("EPS")
 
+tgls:Toggle("ESP Player",false,function(value)
+    ESPPlayer = value
+    while ESPPlayer do wait()
+        UpdateEspPlayer()
+    end
+end)
+
+tgls:Toggle("ESP ChestP",false,function(value)
+    ChestESP = value
+    while ChestESP do wait()
+        UpdateChestEsp() 
+    end
+end)
+
+tgls:Toggle("ESP Fruit",false,function(value)
+    DevilFruitESP = value
+    while DevilFruitESP do wait()
+        UpdateBfEsp() 
+    end
+end)
+
+tgls:Toggle("ESP Flower",false,function(value)
+    FlowerESP = value
+    while FlowerESP do wait()
+        UpdateFlowerEsp() 
+    end
+end)
+
+tgls:Toggle("ESP Island",IslandESP,function(value)
+    IslandESP = value
+    while IslandESP do wait()
+        UpdateIslandESP() 
+    end
+end)
