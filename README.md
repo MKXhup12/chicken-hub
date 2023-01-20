@@ -14,6 +14,7 @@ local MaiA = serv:Channel("ตั้งค่าv2")
 
 tgls:Toggle("AutoFarm",false, function(value)
 _G.BringMob = value
+_G.FastAttack = value
 _G.FastAttackNormalSpeed = value
 _G.AutoFarm = value
 end)
@@ -2785,4 +2786,175 @@ tgls:Toggle("ESP Island",IslandESP,function(value)
     while IslandESP do wait()
         UpdateIslandESP() 
     end
+end)
+
+function TP(P)
+   local Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- จุดที่จะไป Position Only
+   local Speed = 300 -- ความเร็วของมึง
+   tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+   tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = P})
+   tween:Play()
+ end
+
+
+
+
+spawn(function()
+    while true do
+        if _G.FastAttack then
+            pcall(function()
+                CameraShakerR:Stop()
+                CombatFramework.activeController.attacking = false
+                CombatFramework.activeController.timeToNextAttack = 0
+                CombatFramework.activeController.increment = 3
+                CombatFramework.activeController.hitboxMagnitude = 100
+                CombatFramework.activeController.blocking = false
+                CombatFramework.activeController.timeToNextBlock = 0
+                CombatFramework.activeController.focusStart = 0
+                CombatFramework.activeController.humanoid.AutoRotate = true
+            end)
+        end
+        task.wait()
+    end
+end)
+
+tgls = serv:Channel("Buy")
+
+tgls:Button("Buy Geppo",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Geppo")
+end)
+
+tgls:Button("Buy Buso Haki",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Buso")
+end)
+
+tgls:Button("Buy Soru",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki","Soru")
+end)
+
+tgls:Button("Buy Observation(Ken) Haki ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk","Buy")
+end)
+
+
+
+tgls:Button("Buy Black Leg ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
+end)
+
+tgls:Button("Buy Electro ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
+end)
+
+tgls:Button("Buy Fishman Karate ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
+end)
+
+tgls:Button("Buy Dragon Claw ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
+end)
+
+tgls:Button("Buy Superhuman ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
+end)
+
+tgls:Button("Buy Death Step ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
+end)
+
+tgls:Button("Buy Sharkman Karate ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
+end)
+
+tgls:Button("Buy Electric Claw ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
+end)
+
+tgls:Button("Buy Dragon Talon ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
+end)
+tgls:Button("Buy God Human ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
+end)
+
+
+
+
+tgls:Button("Tomoe Ring ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Tomoe Ring")
+end)
+
+tgls:Button("Black Cape ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Black Cape")
+end)
+
+tgls:Button("Swordsman Hat ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Swordsman Hat")
+end)
+
+
+
+tgls:Button("Cutlass ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cutlass")
+end)
+
+tgls:Button("Katana ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Katana")
+end)
+
+tgls:Button("Iron Mace ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Iron Mace")
+end)
+
+tgls:Button("Duel Katana ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Duel Katana")
+end)
+
+tgls:Button("Triple Katana ", function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Triple Katana")
+end)
+
+tgls:Button("Pipe ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Pipe")
+end)
+
+tgls:Button("Dual Headed Blade ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Dual-Headed Blade")
+end)
+
+tgls:Button("Bisento ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Bisento")
+end)
+
+tgls:Button("Soul Cane ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Soul Cane")
+end)
+
+
+
+tgls:Button("Slingshot ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Slingshot")
+end)
+
+tgls:Button("Musket ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Musket")
+end)
+
+tgls:Button("Flintlock ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Flintlock")
+end)
+
+tgls:Button("Refined Flintlock ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Refined Flintlock")
+end)
+
+tgls:Button("Cannon ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cannon")
+end)
+
+tgls:Button("Kabucha ",function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","1")
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Slingshot","2")
 end)
